@@ -4,19 +4,22 @@ package com.axel_stein.stack;
  * Linked-list implementation of Stack
  * A stack with N items uses ~40N bytes
  * Every operation takes constant time in the worst case
+ * Uses extra space to deal with the links
  * @author Axel Stein
  */
-public class LinkedStack<T> {
-    private Node<T> first;
+public class LinkedStack<T> implements Stack<T> {
+    private Node first;
     private int size;
 
+    @Override
     public void push(T t) {
-        Node<T> node = new Node<>(t);
+        Node node = new Node(t);
         node.next = first;
         first = node;
         size++;
     }
 
+    @Override
     public T pop() {
         if (isEmpty()) throw new IllegalStateException("Can't pop empty stack");
         T data = first.data;
@@ -25,21 +28,24 @@ public class LinkedStack<T> {
         return data;
     }
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    @Override
     public boolean isNotEmpty() {
         return size > 0;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
-    private static class Node<T> {
+    private class Node {
         private final T data;
-        private Node<T> next;
+        private Node next;
 
         public Node(T data) {
             this.data = data;
