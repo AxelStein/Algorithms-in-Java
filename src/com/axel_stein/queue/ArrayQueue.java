@@ -1,11 +1,13 @@
 package com.axel_stein.queue;
 
+import java.util.Iterator;
+
 /**
  * Array implementation of queue
  * Every operation takes amortized time
  * @author Axel Stein
  */
-public class ArrayQueue<T> implements Queue<T> {
+public class ArrayQueue<T> implements Queue<T>, Iterable<T> {
     public T[] arr = (T[]) new Object[1];
     private int head;
     private int tail;
@@ -52,5 +54,20 @@ public class ArrayQueue<T> implements Queue<T> {
         head = 0;
         tail = size;
         arr = copy;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            @Override
+            public boolean hasNext() {
+                return isNotEmpty();
+            }
+
+            @Override
+            public T next() {
+                return dequeue();
+            }
+        };
     }
 }

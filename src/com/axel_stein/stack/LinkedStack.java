@@ -1,5 +1,7 @@
 package com.axel_stein.stack;
 
+import java.util.Iterator;
+
 /**
  * Linked-list implementation of Stack
  * A stack with N items uses ~40N bytes
@@ -7,7 +9,7 @@ package com.axel_stein.stack;
  * Uses extra space to deal with the links
  * @author Axel Stein
  */
-public class LinkedStack<T> implements Stack<T> {
+public class LinkedStack<T> implements Stack<T>, Iterable<T> {
     private Node first;
     private int size;
 
@@ -41,6 +43,21 @@ public class LinkedStack<T> implements Stack<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            @Override
+            public boolean hasNext() {
+                return isNotEmpty();
+            }
+
+            @Override
+            public T next() {
+                return pop();
+            }
+        };
     }
 
     private class Node {

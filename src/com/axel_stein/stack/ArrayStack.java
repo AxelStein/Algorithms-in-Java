@@ -1,12 +1,14 @@
 package com.axel_stein.stack;
 
+import java.util.Iterator;
+
 /**
  * Array implementation of Stack
  * Every operation takes amortized time
  * Uses less wasted space than LinkedStack
  * @author Axel Stein
  */
-public class ArrayStack<T> implements Stack<T> {
+public class ArrayStack<T> implements Stack<T>, Iterable<T> {
     public T[] arr;
     private int pointer;
     private int size;
@@ -65,5 +67,20 @@ public class ArrayStack<T> implements Stack<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+            @Override
+            public boolean hasNext() {
+                return isNotEmpty();
+            }
+
+            @Override
+            public T next() {
+                return pop();
+            }
+        };
     }
 }
