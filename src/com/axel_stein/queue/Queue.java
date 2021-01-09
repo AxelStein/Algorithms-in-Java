@@ -1,5 +1,9 @@
 package com.axel_stein.queue;
 
+/**
+ * Queue interface
+ * @author Axel Stein
+ */
 public interface Queue<T> {
     void enqueue(T item);
     T dequeue();

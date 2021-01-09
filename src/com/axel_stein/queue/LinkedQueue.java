@@ -4,6 +4,7 @@ package com.axel_stein.queue;
  * Linked-list implementation of queue
  * Every operation takes constant time in the worst case
  * Uses extra space to deal with the links
+ * @author Axel Stein
  */
 public class LinkedQueue<T> implements Queue<T> {
     private Node first;
